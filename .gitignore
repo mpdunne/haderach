@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+
+# Question sets — maintained separately/private
+question-sets/*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment / secrets
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# Tests / tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Build/package output
+build/
+dist/
+*.egg-info/
