@@ -1,4 +1,4 @@
-const BUILD_VERSION='v2.26.1';
+const BUILD_VERSION='v2.27.0';
 const THEME_KEY='haderach_theme_v1';
 function applyTheme(name){ document.documentElement.dataset.theme=name==='paper'?'':name; localStorage.setItem(THEME_KEY,name); const picker=document.querySelector('#themePicker'); if(picker) picker.value=name; refreshPals(); if(app && !session && active===null) renderLibrary(); }
 const app=document.querySelector('#app'), dlg=document.querySelector('#importDialog');
@@ -11,7 +11,7 @@ function palHTML(stage='home',hint=''){let [name,img]=THEME_PALS[themeName()]||T
 function refreshPals(){document.querySelectorAll('.pal').forEach(el=>{let stage=el.dataset.palStage||'home',hint=el.dataset.hint||'';el.outerHTML=palHTML(stage,hint)})}
 
 
-const K='haderach.v1'; const EXTERNAL_SET_FILES=['./question-sets/naturalisation-francaise-2026.json?v=2.26.1']; const externalSetIds=new Set(); let db=load(), active=null, session=null;
+const K='haderach.v1'; const EXTERNAL_SET_FILES=['./question-sets/naturalisation-francaise-2026.json?v=2.27.0']; const externalSetIds=new Set(); let db=load(), active=null, session=null;
 function load(){try{return JSON.parse(localStorage.getItem(K))||{sets:{},progress:{}}}catch{return {sets:{},progress:{}}}}
 function save(){const clean={...db,sets:{...db.sets}}; for(const id of externalSetIds) delete clean.sets[id]; localStorage.setItem(K,JSON.stringify(clean))}
 async function sha256(value){const bytes=new TextEncoder().encode(JSON.stringify(value));const digest=await crypto.subtle.digest('SHA-256',bytes);return [...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,'0')).join('')}
