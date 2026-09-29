@@ -206,3 +206,7 @@ a.brand{color:inherit;text-decoration:none;display:inline-block}
 a.brand:focus-visible{outline:2px solid currentColor;outline-offset:4px;border-radius:2px}
 
 .study-controls{gap:12px;flex-wrap:wrap}
+
+/* Keep Cyber Night's dialog text and column examples readable. */
+html[data-theme="cyber"] dialog{color:var(--ink);color-scheme:dark}
+html[data-theme="cyber"] code{background:#252542;color:#f6f2ff}
