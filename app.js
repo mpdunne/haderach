@@ -1,4 +1,4 @@
-const BUILD_VERSION='v3.1.0';
+const BUILD_VERSION='v3.2.0';
 const THEME_KEY='haderach_theme_v1';
 function applyTheme(name){ document.documentElement.dataset.theme=name==='paper'?'':name; localStorage.setItem(THEME_KEY,name); const picker=document.querySelector('#themePicker'); if(picker) picker.value=name; refreshPals(); if(appReady && app && !session && active===null) renderLibrary(); }
 const app=document.querySelector('#app'), dlg=document.querySelector('#importDialog');
@@ -11,7 +11,7 @@ function palHTML(stage='home',hint=''){let [name,img]=THEME_PALS[themeName()]||T
 function refreshPals(){document.querySelectorAll('.pal').forEach(el=>{let stage=el.dataset.palStage||'home',hint=el.dataset.hint||'';el.outerHTML=palHTML(stage,hint)})}
 
 
-const K='haderach.v1'; const EXTERNAL_SET_FILES=['./question-sets/naturalisation-francaise-2026.json?v=3.1.0']; const externalSetIds=new Set(); let db=load(), active=null, session=null, appReady=false;
+const K='haderach.v1'; const EXTERNAL_SET_FILES=['./question-sets/naturalisation-francaise-2026.json?v=3.2.0']; const externalSetIds=new Set(); let db=load(), active=null, session=null, appReady=false;
 const VIEW_KEY='haderach.view.v1';
 let currentPage='library';
 function load(){try{return JSON.parse(localStorage.getItem(K))||{sets:{},progress:{}}}catch{return {sets:{},progress:{}}}}
