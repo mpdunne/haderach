@@ -204,3 +204,5 @@ html[data-theme="gameboy"] .feedback-actions .sure.on{
 /* The brand is also the library navigation link. */
 a.brand{color:inherit;text-decoration:none;display:inline-block}
 a.brand:focus-visible{outline:2px solid currentColor;outline-offset:4px;border-radius:2px}
+
+.study-controls{gap:12px;flex-wrap:wrap}
