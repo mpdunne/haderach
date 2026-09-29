@@ -210,3 +210,16 @@ a.brand:focus-visible{outline:2px solid currentColor;outline-offset:4px;border-r
 /* Keep Cyber Night's dialog text and column examples readable. */
 html[data-theme="cyber"] dialog{color:var(--ink);color-scheme:dark}
 html[data-theme="cyber"] code{background:#252542;color:#f6f2ff}
+
+#quizName{display:block;width:100%;margin-top:6px;padding:10px;font:inherit;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink)}
+
+.set-heading{align-items:flex-start}
+.set-heading h3{flex:1;min-width:0}
+button.delete-set{flex:none;min-width:36px;min-height:36px;font-size:24px;line-height:1;padding:4px;color:var(--ink)}
+button.delete-set:hover{color:var(--bad)}
+button.delete-set:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+
+#deleteDialog{color:var(--ink)}
+#deleteDialog h2{overflow-wrap:anywhere}
+#deleteError{color:var(--bad)}
+#deleteError:empty{display:none}

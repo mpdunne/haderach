@@ -1,1 +1,89 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#171714"><title>Haderach</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css?v=3.1.0"><link rel="apple-touch-icon" href="assets/icons/icon-192.png"></head><body><div class="shell"><header><div><a class="brand" id="brandHome" href="./" aria-label="Haderach — Library">Haderach</a><div class="sub">A quiz app.</div></div><nav><select id="themePicker" class="theme-picker" aria-label="Theme"><option value="memphis">90s Memphis</option><option value="cyber">Cyber Night</option><option value="win95">Windows 95</option><option value="acid">Acid Pop</option><option value="paper">Paper</option><option value="y2k">Y2K Aqua</option><option value="riso">Riso Club</option><option value="gameboy">Pocket Green</option><option value="sunset">Sunset Arcade</option><option value="botanical">Botanical Study</option><option value="spaceage">Space Age</option></select><button class="secondary" id="homeBtn">Library</button></nav></header><main id="app"></main></div><dialog id="importDialog"><form method="dialog"><div class="spread"><h2>Import a question set</h2><button class="ghost">✕</button></div><p>Built-in banks are loaded from auxiliary JSON files. Import CSV or XLSX for additional local question sets. One row per question. Required: question, A, B, C, D, correct. Optional: topic, explanation, source.</p><p class="tiny">Accepted headings include <code>Question</code>, <code>A</code>–<code>D</code>, <code>Correct</code>/<code>Bonne réponse</code>, <code>Topic</code>/<code>Catégorie</code>.</p><input id="fileInput" type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><div id="importStatus" class="tiny" style="margin-top:10px"></div></form></dialog><script src="app.js?v=3.1.0"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#171714">
+    <title>Haderach</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="style.css?v=3.1.0">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div>
+          <a class="brand" id="brandHome" href="./" aria-label="Haderach — Library">Haderach</a>
+          <div class="sub">A quiz app.</div>
+        </div>
+        <nav>
+          <select id="themePicker" class="theme-picker" aria-label="Theme">
+            <option value="memphis">90s Memphis</option>
+            <option value="cyber">Cyber Night</option>
+            <option value="win95">Windows 95</option>
+            <option value="acid">Acid Pop</option>
+            <option value="paper">Paper</option>
+            <option value="y2k">Y2K Aqua</option>
+            <option value="riso">Riso Club</option>
+            <option value="gameboy">Pocket Green</option>
+            <option value="sunset">Sunset Arcade</option>
+            <option value="botanical">Botanical Study</option>
+            <option value="spaceage">Space Age</option>
+          </select>
+          <button class="secondary" id="homeBtn">Library</button>
+        </nav>
+      </header>
+      <main id="app"></main>
+    </div>
+
+    <dialog id="importDialog">
+      <form id="addSetForm">
+        <div class="spread">
+          <h2>Add a question set</h2>
+          <button class="ghost" type="button" id="closeImport" aria-label="Close">✕</button>
+        </div>
+        <p>
+          Built-in banks are loaded from auxiliary JSON files. Import CSV, XLSX, or JSON
+          for additional local question sets. For CSV and XLSX, use one row per question.
+          Required: question, A, B, C, D, correct. Optional: topic, explanation, source.
+        </p>
+        <p class="tiny">
+          Accepted headings include <code>Question</code>, <code>A</code>–<code>D</code>,
+          <code>Correct</code>/<code>Bonne réponse</code>, <code>Topic</code>/<code>Catégorie</code>.
+        </p>
+        <p class="tiny">
+          JSON: a question-set object with a <code>questions</code> array. Each question
+          needs <code>question</code> text, four <code>options</code>, and a
+          <code>correct</code> index from 0 to 3 (A to D). Existing sets are kept;
+          importing a matching set ID creates a separate copy.
+        </p>
+        <input
+          id="fileInput"
+          type="file"
+          accept=".csv,.xlsx,.json,application/json,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        >
+        <p>
+          <label for="quizName">Question set name</label>
+          <input id="quizName" type="text" required disabled placeholder="Choose a file first">
+        </p>
+        <button id="addSetBtn" type="submit" disabled>Add question set</button>
+        <div role="status" id="importStatus" class="tiny" style="margin-top:10px"></div>
+      </form>
+    </dialog>
+
+    <dialog id="deleteDialog" aria-labelledby="deleteTitle" aria-describedby="deleteDescription">
+      <h2 id="deleteTitle">Delete question set?</h2>
+      <p id="deleteDescription">
+        This removes its questions, saved progress, and study choices from this browser
+        on this device. This cannot be undone. Your original file is not deleted.
+      </p>
+      <p id="deleteError" role="alert"></p>
+      <div class="row">
+        <button type="button" class="secondary" id="cancelDelete" autofocus>Cancel</button>
+        <button type="button" id="confirmDelete">Delete question set</button>
+      </div>
+    </dialog>
+
+    <script src="app.js?v=3.1.0"></script>
+  </body>
+</html>
