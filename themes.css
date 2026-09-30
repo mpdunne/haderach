@@ -1,0 +1,519 @@
+/* Theme palettes and component overrides. Load before style.css. */
+
+/* ==========================================================================
+   Paper (default)
+   ========================================================================== */
+/* Other themes inherit unspecified values from this palette. */
+
+:root {
+  --bg: #f5f2ea;
+  --card: #fffdf7;
+  --ink: #171714;
+  --muted: #777267;
+  --line: #ded9ce;
+  --accent: #171714;
+  --good: #1d6d4d;
+  --bad: #9b3434;
+  --star: #c58d10;
+  --radius: 18px;
+  --shadow: 0 2px 12px #00000008;
+  --font: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --display: Georgia,serif;
+  --pattern: none;
+  --pattern-size: auto;
+  --selected-toggle-ink: var(--ink);
+}
+
+/* ==========================================================================
+   90s Memphis
+   ========================================================================== */
+
+html[data-theme="memphis"] {
+  --bg: #f7e64a;
+  --card: #fff8ef;
+  --ink: #17152d;
+  --muted: #625d76;
+  --line: #17152d;
+  --accent: #ff4f9a;
+  --good: #087f5b;
+  --bad: #d62839;
+  --star: #ff5c00;
+  --radius: 3px;
+  --shadow: 6px 6px 0 #17152d;
+  --display: "Arial Black",Impact,sans-serif;
+  --pattern: radial-gradient(circle at 12px 12px,#21c7c7 0 3px,transparent 3.5px),linear-gradient(135deg,transparent 47%,#ff4f9a 48% 52%,transparent 53%);
+  --pattern-size: 46px 46px,92px 92px;
+}
+
+html[data-theme="memphis"] button:not(.star):not(.ghost) {
+  box-shadow: 3px 3px 0 var(--ink);
+  border-radius: 2px;
+}
+
+html[data-theme="memphis"] .option {
+  background: #fff8ef;
+}
+
+html[data-theme="memphis"] .progress {
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: #fff8ef;
+}
+
+html[data-theme="memphis"] .progress>div {
+  background: #ff4f9a;
+}
+
+/* ==========================================================================
+   Cyber Night
+   ========================================================================== */
+
+html[data-theme="cyber"] {
+  --bg: #080818;
+  --card: #111126;
+  --ink: #f6f2ff;
+  --muted: #aaa2c7;
+  --line: #39345b;
+  --accent: #00f5d4;
+  --good: #00f5a0;
+  --bad: #ff477e;
+  --star: #fee440;
+  --selected-toggle-ink: #080818;
+  --radius: 12px;
+  --shadow: 0 0 0 1px #00f5d422,0 8px 30px #0008;
+  --display: ui-monospace,SFMono-Regular,Menlo,monospace;
+  --pattern: linear-gradient(#00f5d40d 1px,transparent 1px),linear-gradient(90deg,#00f5d40d 1px,transparent 1px);
+  --pattern-size: 24px 24px;
+}
+
+html[data-theme="cyber"] button:not(.secondary):not(.ghost):not(.star) {
+  background: #00f5d4;
+  color: #080818;
+  border-color: #00f5d4;
+}
+
+html[data-theme="cyber"] .option {
+  background: #171733;
+  color: #f6f2ff;
+}
+
+html[data-theme="cyber"] .progress>div {
+  background: #00f5d4;
+}
+
+html[data-theme="cyber"] select,
+html[data-theme="cyber"] input {
+  background: #171733;
+  color: #f6f2ff;
+}
+
+html[data-theme="cyber"] dialog {
+  color: var(--ink);
+  color-scheme: dark;
+}
+
+html[data-theme="cyber"] code {
+  background: #252542;
+  color: #f6f2ff;
+}
+
+/* ==========================================================================
+   Windows 95
+   ========================================================================== */
+
+html[data-theme="win95"] {
+  --bg: #008080;
+  --card: #c0c0c0;
+  --ink: #000;
+  --muted: #444;
+  --line: #808080;
+  --accent: #000080;
+  --good: #006400;
+  --bad: #a00000;
+  --star: #000080;
+  --selected-toggle-ink: #fff;
+  --radius: 0;
+  --shadow: inset 2px 2px #fff,inset -2px -2px #404040;
+  --font: "MS Sans Serif",Tahoma,Arial,sans-serif;
+  --display: "MS Sans Serif",Tahoma,Arial,sans-serif;
+}
+
+html[data-theme="win95"] .card,
+html[data-theme="win95"] dialog {
+  border: 2px solid #c0c0c0;
+}
+
+html[data-theme="win95"] header {
+  background: #000080;
+  color: white;
+  padding: 6px;
+}
+
+html[data-theme="win95"] header .sub {
+  color: #ddd;
+}
+
+html[data-theme="win95"] button,
+html[data-theme="win95"] select,
+html[data-theme="win95"] input {
+  border-radius: 0;
+  background: #c0c0c0;
+  color: #000;
+  border: 2px solid;
+  border-color: #fff #404040 #404040 #fff;
+  box-shadow: none;
+}
+
+html[data-theme="win95"] .option {
+  background: #c0c0c0;
+}
+
+html[data-theme="win95"] .progress {
+  border-radius: 0;
+  background: white;
+  border: 2px inset #ddd;
+}
+
+html[data-theme="win95"] .progress>div {
+  background: #000080;
+}
+
+/* ==========================================================================
+   Acid Pop
+   ========================================================================== */
+
+html[data-theme="acid"] {
+  --bg: #b7ff00;
+  --card: #ff63d8;
+  --ink: #101010;
+  --muted: #3b3b3b;
+  --line: #101010;
+  --accent: #6633ff;
+  --good: #005f40;
+  --bad: #9b003c;
+  --star: #6633ff;
+  --selected-toggle-ink: #fff;
+  --radius: 24px;
+  --shadow: 5px 5px 0 #101010;
+  --display: "Arial Black",Impact,sans-serif;
+  --pattern: repeating-linear-gradient(45deg,transparent 0 22px,#6633ff22 22px 25px);
+  --pattern-size: auto;
+}
+
+html[data-theme="acid"] button:not(.star):not(.ghost) {
+  background: #6633ff;
+  color: #fff;
+  border: 2px solid #101010;
+}
+
+html[data-theme="acid"] .option {
+  background: #fff36d;
+  color: #101010;
+}
+
+html[data-theme="acid"] .progress>div {
+  background: #6633ff;
+}
+
+/* ==========================================================================
+   Y2K Aqua
+   ========================================================================== */
+
+html[data-theme="y2k"] {
+  --bg: #dffbff;
+  --card: #f8ffff;
+  --ink: #17305d;
+  --muted: #59708e;
+  --line: #7ac9e6;
+  --accent: #ff79c6;
+  --good: #147a70;
+  --bad: #c93666;
+  --star: #ff79c6;
+  --radius: 22px;
+  --shadow: 0 10px 28px #4aa4c52b,inset 0 1px #fff;
+  --display: "Trebuchet MS",Verdana,sans-serif;
+  --pattern: radial-gradient(circle at 20% 10%,#fff 0 8%,transparent 9%),radial-gradient(circle at 80% 30%,#b7efff 0 7%,transparent 8%),linear-gradient(135deg,#dffbff,#d8d0ff);
+  --pattern-size: auto;
+}
+
+html[data-theme="y2k"] .card,
+html[data-theme="y2k"] .pal-face {
+  backdrop-filter: blur(8px);
+  background: linear-gradient(145deg,#ffffffdd,#e8faffcc);
+  border-color: #83cfe8;
+}
+
+html[data-theme="y2k"] button:not(.star):not(.ghost) {
+  background: linear-gradient(#729cff,#816ee8);
+  border-color: #4562b5;
+}
+
+html[data-theme="y2k"] .progress>div {
+  background: linear-gradient(90deg,#67d9e8,#ff79c6);
+}
+
+/* ==========================================================================
+   Riso Club
+   ========================================================================== */
+
+html[data-theme="riso"] {
+  --bg: #f4eedf;
+  --card: #fffaf0;
+  --ink: #1c2440;
+  --muted: #6d6571;
+  --line: #1c2440;
+  --accent: #ff4b68;
+  --good: #167b63;
+  --bad: #d92f55;
+  --star: #ff4b68;
+  --radius: 4px;
+  --shadow: 5px 5px 0 #1c2440;
+  --display: Georgia,serif;
+  --pattern: radial-gradient(#1f78ff22 1.5px,transparent 1.5px),radial-gradient(#ff4b6822 1.5px,transparent 1.5px);
+  --pattern-size: 13px 13px,17px 17px;
+}
+
+html[data-theme="riso"] button:not(.star):not(.ghost) {
+  background: #1f78ff;
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  border-radius: 2px;
+}
+
+html[data-theme="riso"] .option {
+  background: #fffaf0;
+}
+
+html[data-theme="riso"] .progress>div {
+  background: #ff4b68;
+}
+
+html[data-theme="riso"] button.option {
+  color: #fff7df!important;
+}
+
+/* ==========================================================================
+   Pocket Green
+   ========================================================================== */
+
+html[data-theme="gameboy"] {
+  --bg: #87965a;
+  --card: #c7d29b;
+  --ink: #1f2d1f;
+  --muted: #4c5b39;
+  --line: #34472c;
+  --accent: #334b35;
+  --good: #1f5a32;
+  --bad: #6d312d;
+  --star: #334b35;
+  --selected-toggle-ink: #eef6c9;
+  --radius: 7px;
+  --shadow: inset 0 0 0 3px #aab879,5px 5px 0 #34472c;
+  --font: ui-monospace,SFMono-Regular,Menlo,monospace;
+  --display: ui-monospace,SFMono-Regular,Menlo,monospace;
+  --pattern: linear-gradient(#ffffff08 50%,transparent 50%);
+  --pattern-size: 100% 4px;
+}
+
+html[data-theme="gameboy"] button:not(.star):not(.ghost) {
+  background: #334b35;
+  color: #dce6ad;
+  border-color: #1f2d1f;
+  border-radius: 20px;
+}
+
+html[data-theme="gameboy"] .option {
+  background: #b9c789;
+  color: #1f2d1f;
+  border-radius: 4px;
+}
+
+html[data-theme="gameboy"] .progress>div {
+  background: #334b35;
+}
+
+html[data-theme="gameboy"] button.option {
+  color: #eef6c9!important;
+}
+
+html[data-theme="gameboy"] .star.on,
+ html[data-theme="gameboy"] .feedback-actions .inline-star.on,
+ html[data-theme="gameboy"] .feedback-actions .sure.on {
+  background: #334b35!important;
+  border-color: #1f2d1f!important;
+  color: #eef6c9!important;
+  -webkit-text-fill-color: #eef6c9!important;
+}
+
+html[data-theme="gameboy"] .feedback-actions .sure.on .sure-label {
+  color: #eef6c9!important;
+  -webkit-text-fill-color: #eef6c9!important;
+}
+
+html[data-theme="gameboy"] .feedback-actions .inline-star.on,
+ html[data-theme="gameboy"] .feedback-actions .sure.on {
+  border-color: #1f2d1f!important;
+  box-shadow: 3px 3px 0 #1f2d1f!important;
+}
+
+/* ==========================================================================
+   Sunset Arcade
+   ========================================================================== */
+
+html[data-theme="sunset"] {
+  --bg: #ffb56b;
+  --card: #fff1d8;
+  --ink: #351b55;
+  --muted: #7d5073;
+  --line: #6d367c;
+  --accent: #ef476f;
+  --good: #087f5b;
+  --bad: #b72e55;
+  --star: #ef476f;
+  --selected-toggle-ink: #351b55;
+  --radius: 16px;
+  --shadow: 0 7px 0 #6d367c;
+  --display: "Arial Black",Impact,sans-serif;
+  --pattern: linear-gradient(180deg,transparent 55%,#6d367c22 56%),repeating-linear-gradient(90deg,transparent 0 38px,#6d367c18 39px 40px);
+  --pattern-size: auto;
+}
+
+html[data-theme="sunset"] button:not(.star):not(.ghost) {
+  background: #6d367c;
+  border-color: #351b55;
+}
+
+html[data-theme="sunset"] .option {
+  background: #fff1d8;
+}
+
+html[data-theme="sunset"] .progress>div {
+  background: #ef476f;
+}
+
+html[data-theme="sunset"] button.option {
+  color: #fff1d8!important;
+}
+
+html[data-theme="sunset"] .utility-btn {
+  background: #fff1d8!important;
+  color: #351b55!important;
+  border-color: #351b55!important;
+}
+
+html[data-theme="sunset"] button:not(.star):not(.ghost):not(.utility-btn) {
+  color: #fff1d8!important;
+}
+
+html[data-theme="sunset"] .finish-actions button:disabled {
+  opacity: .62;
+}
+
+html[data-theme="sunset"] .feedback-actions .inline-star,
+html[data-theme="sunset"] .feedback-actions .sure {
+  background: #fff1d8!important;
+  color: #351b55!important;
+  border-color: #351b55!important;
+}
+
+html[data-theme="sunset"] .feedback-actions .inline-star.on,
+html[data-theme="sunset"] .feedback-actions .sure.on {
+  color: #6d367c!important;
+  border-color: #6d367c!important;
+}
+
+html[data-theme="sunset"] .feedback-actions .inline-star.on,
+ html[data-theme="sunset"] .feedback-actions .sure.on {
+  background: var(--star)!important;
+  border-color: var(--star)!important;
+  color: #351b55!important;
+}
+
+html[data-theme="sunset"] .feedback-actions .inline-star.on,
+ html[data-theme="sunset"] .feedback-actions .sure.on {
+  border-color: #351b55!important;
+  box-shadow: 3px 3px 0 #351b55!important;
+}
+
+/* ==========================================================================
+   Botanical Study
+   ========================================================================== */
+
+html[data-theme="botanical"] {
+  --bg: #dce7d4;
+  --card: #f8f4e8;
+  --ink: #173d2b;
+  --muted: #617060;
+  --line: #8ca28c;
+  --accent: #d77758;
+  --good: #2d704b;
+  --bad: #a84c3c;
+  --star: #d77758;
+  --radius: 18px;
+  --shadow: 0 6px 18px #24462d18;
+  --display: Georgia,serif;
+  --pattern: radial-gradient(ellipse at 10% 20%,#6e936722 0 8%,transparent 9%),radial-gradient(ellipse at 90% 70%,#d7775820 0 7%,transparent 8%);
+  --pattern-size: 180px 180px;
+}
+
+html[data-theme="botanical"] button:not(.star):not(.ghost) {
+  background: #315f45;
+  color: #f4f0dc;
+  border-color: #173d2b;
+}
+
+html[data-theme="botanical"] .option {
+  background: #fffdf5;
+}
+
+html[data-theme="botanical"] .progress>div {
+  background: #d77758;
+}
+
+html[data-theme="botanical"] button.option {
+  color: #f4f0dc!important;
+}
+
+/* ==========================================================================
+   Space Age
+   ========================================================================== */
+
+html[data-theme="spaceage"] {
+  --bg: #f1e9d2;
+  --card: #fffaf0;
+  --ink: #1d2340;
+  --muted: #6b6c7e;
+  --line: #1d2340;
+  --accent: #e84b3c;
+  --good: #16735a;
+  --bad: #b93434;
+  --star: #e84b3c;
+  --radius: 34px;
+  --shadow: 0 8px 0 #1d2340;
+  --display: "Arial Black",Impact,sans-serif;
+  --pattern: radial-gradient(circle at 15% 20%,#e84b3c 0 4px,transparent 5px),radial-gradient(circle at 80% 55%,#2c77c7 0 5px,transparent 6px);
+  --pattern-size: 130px 130px,170px 170px;
+}
+
+html[data-theme="spaceage"] button:not(.star):not(.ghost) {
+  background: #e84b3c;
+  border: 2px solid #1d2340;
+  border-radius: 999px;
+}
+
+html[data-theme="spaceage"] .option {
+  background: #fffaf0;
+  border-radius: 999px;
+  padding-left: 20px;
+}
+
+html[data-theme="spaceage"] .progress {
+  height: 10px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  border-radius: 999px;
+}
+
+html[data-theme="spaceage"] .progress>div {
+  background: #2c77c7;
+}
