@@ -897,3 +897,11 @@ button.delete-set:focus-visible {
 #deleteError:empty {
   display: none;
 }
+
+/* Label casing is presentation: themes can keep the sentence-case source text. */
+.star,
+.sure,
+.reveal,
+#skip {
+  text-transform: var(--control-text-transform);
+}

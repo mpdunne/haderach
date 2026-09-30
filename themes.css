@@ -6,6 +6,7 @@
 /* Other themes inherit unspecified values from this palette. */
 
 :root {
+  --control-text-transform: uppercase;
   --bg: #f5f2ea;
   --card: #fffdf7;
   --ink: #171714;
@@ -122,6 +123,7 @@ html[data-theme="cyber"] code {
    ========================================================================== */
 
 html[data-theme="win95"] {
+  --control-text-transform: none;
   --bg: #008080;
   --card: #c0c0c0;
   --ink: #000;
@@ -131,7 +133,7 @@ html[data-theme="win95"] {
   --good: #006400;
   --bad: #a00000;
   --star: #000080;
-  --selected-toggle-ink: #fff;
+  --selected-toggle-ink: #000;
   --radius: 0;
   --shadow: inset 2px 2px #fff,inset -2px -2px #404040;
   --font: "MS Sans Serif",Tahoma,Arial,sans-serif;
@@ -162,6 +164,31 @@ html[data-theme="win95"] input {
   border: 2px solid;
   border-color: #fff #404040 #404040 #fff;
   box-shadow: none;
+}
+
+/* Utility controls and toggles use the same raised system-button bevel. */
+html[data-theme="win95"] :is(button.star, button.utility-btn, .feedback-actions button.sure) {
+  background: var(--card) !important;
+  color: var(--ink) !important;
+  border: 2px solid !important;
+  border-color: #fff #404040 #404040 #fff !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Latched toggles stay inset; all enabled buttons depress during a click. */
+html[data-theme="win95"] button:is(.star, .sure).on,
+html[data-theme="win95"] .feedback-actions button:is(.inline-star, .sure).on,
+html[data-theme="win95"] button:not(:disabled):active {
+  border-color: #404040 #fff #fff #404040 !important;
+  box-shadow: inset 1px 1px #808080 !important;
+  transform: none !important;
+}
+
+html[data-theme="win95"] button:is(.star, .sure).on,
+html[data-theme="win95"] .feedback-actions button:is(.inline-star, .sure).on {
+  background: #d4d0c8 !important;
 }
 
 html[data-theme="win95"] .option {
