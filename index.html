@@ -1,20 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <meta name="theme-color" content="#171714">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#171714" />
     <title>Haderach</title>
-    <link rel="manifest" href="manifest.webmanifest">
-    <link rel="stylesheet" href="themes.css?v=3.2.1">
-    <link rel="stylesheet" href="style.css?v=3.2.1">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="themes.css?v=3.2.2" />
+    <link rel="stylesheet" href="style.css?v=3.2.2" />
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
   </head>
   <body>
     <div class="shell">
       <header>
         <div>
-          <a class="brand" id="brandHome" href="./" aria-label="Haderach — Library">Haderach</a>
+          <a
+            class="brand"
+            id="brandHome"
+            href="./"
+            aria-label="Haderach — Library"
+            >Haderach</a
+          >
           <div class="sub">A quiz app.</div>
         </div>
         <nav>
@@ -41,50 +50,244 @@
       <form id="addSetForm">
         <div class="spread">
           <h2>Add a question set</h2>
-          <button class="ghost" type="button" id="closeImport" aria-label="Close">✕</button>
+          <button
+            class="ghost"
+            type="button"
+            id="closeImport"
+            aria-label="Close"
+          >
+            ✕
+          </button>
         </div>
         <p>
-          Built-in banks are loaded from auxiliary JSON files. Import CSV, XLSX, or JSON
-          for additional local question sets. For CSV and XLSX, use one row per question.
-          Required: question, A, B, C, D, correct. Optional: topic, explanation, source.
+          Built-in banks are loaded from auxiliary JSON files. Import CSV, XLSX,
+          or JSON for additional local question sets. For CSV and XLSX, use one
+          row per question. Required: question, A, B, C, D, correct. Optional:
+          topic, explanation, source.
         </p>
         <p class="tiny">
-          Accepted headings include <code>Question</code>, <code>A</code>–<code>D</code>,
-          <code>Correct</code>/<code>Bonne réponse</code>, <code>Topic</code>/<code>Catégorie</code>.
+          Accepted headings include <code>Question</code>,
+          <code>A</code>–<code>D</code>, <code>Correct</code>/<code
+            >Bonne réponse</code
+          >, <code>Topic</code>/<code>Catégorie</code>.
         </p>
         <p class="tiny">
-          JSON: a question-set object with a <code>questions</code> array. Each question
-          needs <code>question</code> text, four <code>options</code>, and a
-          <code>correct</code> index from 0 to 3 (A to D). Existing sets are kept;
-          importing a matching set ID creates a separate copy.
+          JSON: a question-set object with a <code>questions</code> array. Each
+          question needs <code>question</code> text, four <code>options</code>,
+          and a <code>correct</code> index from 0 to 3 (A to D). Existing sets
+          are kept; importing a matching set ID creates a separate copy.
         </p>
         <input
           id="fileInput"
           type="file"
           accept=".csv,.xlsx,.json,application/json,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        >
+        />
         <p>
           <label for="quizName">Question set name</label>
-          <input id="quizName" type="text" required disabled placeholder="Choose a file first">
+          <input
+            id="quizName"
+            type="text"
+            required
+            disabled
+            placeholder="Choose a file first"
+          />
         </p>
         <button id="addSetBtn" type="submit" disabled>Add question set</button>
-        <div role="status" id="importStatus" class="tiny" style="margin-top:10px"></div>
+        <div role="status" id="importStatus" class="tiny"></div>
       </form>
     </dialog>
 
-    <dialog id="deleteDialog" aria-labelledby="deleteTitle" aria-describedby="deleteDescription">
+    <dialog
+      id="deleteDialog"
+      aria-labelledby="deleteTitle"
+      aria-describedby="deleteDescription"
+    >
       <h2 id="deleteTitle">Delete question set?</h2>
       <p id="deleteDescription">
-        This removes its questions, saved progress, and study choices from this browser
-        on this device. This cannot be undone. Your original file is not deleted.
+        This removes its questions, saved progress, and study choices from this
+        browser on this device. This cannot be undone. Your original file is not
+        deleted.
       </p>
       <p id="deleteError" role="alert"></p>
       <div class="row">
-        <button type="button" class="secondary" id="cancelDelete" autofocus>Cancel</button>
+        <button type="button" class="secondary" id="cancelDelete" autofocus>
+          Cancel
+        </button>
         <button type="button" id="confirmDelete">Delete question set</button>
       </div>
     </dialog>
 
-    <script src="app.js?v=3.2.0"></script>
+    <!-- Reusable components -->
+    <template id="pal-template">
+      <div class="pal">
+        <div class="pal-avatar"><img alt="" /></div>
+        <div class="pal-copy">
+          <strong></strong><span class="pal-hint"></span>
+        </div>
+      </div>
+    </template>
+
+    <template id="set-card-template">
+      <div class="card set">
+        <div class="spread set-heading">
+          <h3></h3>
+          <button
+            type="button"
+            class="ghost delete-set"
+            title="Delete question set"
+          >
+            ×
+          </button>
+        </div>
+        <div class="metric" data-set-summary></div>
+        <div class="metric" data-set-progress></div>
+      </div>
+    </template>
+
+    <template id="topic-template">
+      <label class="topic"
+        ><input class="topicCheck" type="checkbox" checked /><span></span
+      ></label>
+    </template>
+
+    <template id="option-template">
+      <button class="option"><b></b> <span></span></button>
+    </template>
+
+    <!-- Library and study screens -->
+    <template id="library-template">
+      <div class="spread">
+        <div>
+          <h1>Library</h1>
+          <div class="metric" data-library-summary></div>
+        </div>
+        <button class="secondary" id="importBtn">Add question set</button>
+      </div>
+      <div class="grid"></div>
+    </template>
+
+    <template id="study-template">
+      <div class="card">
+        <h1 data-set-name></h1>
+        <p class="metric" data-set-description></p>
+        <div class="row">
+          <b data-question-count></b> questions ·
+          <b data-wrong-count></b> previously incorrect ·
+          <b data-sure-count></b> sure · <b data-star-count></b> starred
+        </div>
+      </div>
+      <div class="card">
+        <h2>Study</h2>
+        <label
+          >Mode
+          <select id="mode">
+            <option value="everything">All</option>
+            <option value="all">All except sure</option>
+            <option value="unseen">Unseen</option>
+            <option value="wrong">Previously incorrect</option>
+            <option value="sure">Sure</option>
+            <option value="starred">Starred</option>
+          </select>
+        </label>
+        <p>Topics</p>
+        <div class="topics">
+          <label class="topic"
+            ><input id="allTopics" type="checkbox" checked />
+            <b>All topics</b></label
+          >
+        </div>
+        <div class="row study-start">
+          <label
+            >Questions <input id="count" type="number" min="1" value="20"
+          /></label>
+          <button id="start">Start quiz</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="spread">
+          <b>Progress</b><span data-progress-summary></span>
+        </div>
+        <div class="progress"><div></div></div>
+      </div>
+    </template>
+
+    <template id="empty-template">
+      <div class="card empty">
+        <h2></h2>
+        <p class="metric">
+          Nothing to review in this group. Your progress is safe.
+        </p>
+        <button id="emptyBack" class="secondary">Back to study options</button>
+      </div>
+    </template>
+
+    <!-- Quiz and answer feedback -->
+    <template id="question-template">
+      <div class="spread question-top">
+        <span class="metric" data-question-position></span>
+        <button id="star" class="star" title="Flag / unflag">☆ Flag</button>
+      </div>
+      <div class="card">
+        <div class="question"></div>
+        <div id="opts"></div>
+        <div class="study-controls">
+          <button class="secondary reveal utility-btn" id="reveal">
+            I don’t know
+          </button>
+          <button class="secondary utility-btn" id="skip">Skip</button>
+        </div>
+        <div id="feedback"></div>
+      </div>
+      <div class="spread">
+        <button class="secondary utility-btn" id="quit">Quit</button>
+        <span class="metric" data-score></span>
+      </div>
+    </template>
+
+    <template id="feedback-template">
+      <div class="feedback">
+        <b data-result></b>
+        <p><strong data-correct-answer></strong></p>
+        <div data-pal-placeholder></div>
+        <div class="tiny" data-source></div>
+        <div class="spread feedback-actions">
+          <button id="feedbackStar" class="star inline-star">☆ Flag</button>
+          <div class="next-group">
+            <button id="sure" class="sure">
+              <span class="sure-label">I'm sure</span>
+            </button>
+            <button id="next">Next →</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- End-of-quiz screens -->
+    <template id="unanswered-template">
+      <div class="card empty">
+        <h2></h2>
+        <p>Answer them now, or finish with them marked as unanswered.</p>
+        <div class="finish-actions">
+          <button id="answerRemaining">Answer remaining</button>
+          <button class="secondary" id="finishAnyway">Finish anyway</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="results-template">
+      <div class="card empty">
+        <h1 data-final-score></h1>
+        <p data-percent-correct></p>
+        <p class="metric" data-result-summary></p>
+        <p class="metric" data-flag-summary></p>
+        <div class="finish-actions">
+          <button id="flagged"></button>
+          <button class="secondary" id="reviewWrong"></button>
+          <button class="secondary" id="finishStudy">Finish</button>
+        </div>
+      </div>
+    </template>
+
+    <script src="app.js?v=3.2.2"></script>
   </body>
 </html>
